@@ -10,14 +10,14 @@ namespace SportLine.Models
         private int id;
         private string titre;
         private string texte;
-        private string photo;
+        private string url;
 
-        public Post(int id, string titre, string texte, string photo)
+        public Post(int id, string titre, string texte, string url)
         {
             this.id = id;
             this.titre = titre;
             this.texte = texte;
-            this.photo = photo;
+            this.url = url;
         }
 
         public int Id
@@ -56,15 +56,15 @@ namespace SportLine.Models
             }
         }
 
-        public string Photo
+        public string Url
         {
             get
             {
-                return photo;
+                return url;
             }
             set
             {
-                this.photo = value;
+                this.url = value;
             }
         }
     }
