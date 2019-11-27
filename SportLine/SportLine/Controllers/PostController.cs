@@ -13,7 +13,11 @@ namespace SportLine.Controllers
         {
             var liste = new List<Post>()
             {
-
+                new Post(1, "Coach de basket", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
+                new Post(2, "Hockey sur glace", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
+                new Post(3, "Foot en salle", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
+                new Post(4, "Sparring Judo", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
+                new Post(5, "Skateboard", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
             };
             // Remplir
             return View(liste);
