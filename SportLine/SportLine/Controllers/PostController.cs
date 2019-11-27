@@ -7,9 +7,9 @@ using SportLine.Models;
 
 namespace SportLine.Controllers
 {
-    public class PostsController : Controller
+    public class PostController : Controller
     {
-        public IActionResult Posts()
+        public IActionResult PostListe()
         {
             var liste = new List<Post>()
             {
