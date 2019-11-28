@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using SportLine.Models;
 
@@ -9,19 +11,29 @@ namespace SportLine.Controllers
 {
     public class PostController : Controller
     {
-        private List<Post> liste = new List<Post>()
-        {
-            new Post(1, "Coach de basket", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
-            new Post(2, "Hockey sur glace", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
-            new Post(3, "Foot en salle", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
-            new Post(4, "Sparring Judo", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
-            new Post(5, "Skateboard", "Nous avons besoin d'un coach de basket", "https://basket-image.jpg"),
-        };
+        private List<Post> liste = new List<Post>();
 
         public IActionResult PostListe()
         {
-            // Remplir
-            return View(this.liste);
+
+            var chaineConnexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C: \Users\theod\Desktop\EPSI B3\.net\B3_Projet_MVC_.NET\SportLine\SportLine\Data\data.mdf;Integrated Security=True;Connect Timeout=30";
+            using (var connection = new SqlConnection(chaineConnexion))
+            {
+                var galerie = connection.Query<PostEntite>("SELECT * FROM Photo");
+                // Remplir
+                return View(this.liste);
+            }
+        }
+
+        public IActionResult Creer()
+        {
+            return View();
+        }
+
+        [HttpPost] //Attribut
+        public IActionResult Creer(PostEntite nouveau)
+        {
+            return View();
         }
 
         public IActionResult DetailsPost(int id)
