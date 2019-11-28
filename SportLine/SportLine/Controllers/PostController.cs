@@ -12,28 +12,31 @@ namespace SportLine.Controllers
     public class PostController : Controller
     {
         private List<Post> liste = new List<Post>();
-
+        string chaineConnexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\theod\Desktop\EPSI B3\.net\B3_Projet_MVC_.NET\SportLine\SportLine\Data\data.mdf;Integrated Security=True;Connect Timeout=30";
+       
         public IActionResult PostListe()
         {
-
-            var chaineConnexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C: \Users\theod\Desktop\EPSI B3\.net\B3_Projet_MVC_.NET\SportLine\SportLine\Data\data.mdf;Integrated Security=True;Connect Timeout=30";
-            using (var connection = new SqlConnection(chaineConnexion))
+            using (var connection = new SqlConnection(this.chaineConnexion))
             {
-                var galerie = connection.Query<PostEntite>("SELECT * FROM Photo");
+                var galerie = connection.Query<PostEntite>("SELECT * FROM Post");
                 // Remplir
                 return View(this.liste);
             }
         }
 
-        public IActionResult Creer()
+        public IActionResult CreerPost()
         {
             return View();
         }
 
         [HttpPost] //Attribut
-        public IActionResult Creer(PostEntite nouveau)
+        public IActionResult CreerPost(PostEntite nouveau)
         {
-            return View();
+            using (var connection = new SqlConnection(this.chaineConnexion))
+            {
+                connection.Execute()
+            }
+            return RedirectToRoute(nameof(PostListe));
         }
 
         public IActionResult DetailsPost(int id)

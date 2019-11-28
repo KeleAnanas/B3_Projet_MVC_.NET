@@ -13,11 +13,9 @@ namespace SportLine.Models
 
         [Required]
         public string Titre { get; set; }
+        [Required]
+        public string Texte { get; set; }
         public string Url { get; set; }
-        public string UsersId { get; set; }
-        public int Vues { get; set; }
         #endregion
-
-        public string UrlHttps => $"https://{Url}";
     }
 }

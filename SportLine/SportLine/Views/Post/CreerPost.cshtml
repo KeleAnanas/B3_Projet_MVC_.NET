@@ -1,16 +1,16 @@
 ﻿@model SportLine.Models.PostEntite
 
 @{
-    ViewData["Title"] = "Creer";
+    ViewData["Title"] = "CreerPoste";
 }
 
-<h2>Creer</h2>
+<h2>CreerPoste</h2>
 
 <h4>PostEntite</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Creer">
+        <form asp-action="CreerPost">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
@@ -23,24 +23,14 @@
                 <span asp-validation-for="Titre" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Texte" class="control-label"></label>
+                <input asp-for="Texte" class="form-control" />
+                <span asp-validation-for="Texte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Url" class="control-label"></label>
                 <input asp-for="Url" class="form-control" />
                 <span asp-validation-for="Url" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UsersId" class="control-label"></label>
-                <input asp-for="UsersId" class="form-control" />
-                <span asp-validation-for="UsersId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Vues" class="control-label"></label>
-                <input asp-for="Vues" class="form-control" />
-                <span asp-validation-for="Vues" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UrlHttps" class="control-label"></label>
-                <input asp-for="UrlHttps" class="form-control" />
-                <span asp-validation-for="UrlHttps" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

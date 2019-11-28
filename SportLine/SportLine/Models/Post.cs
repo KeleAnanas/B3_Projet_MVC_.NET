@@ -12,6 +12,8 @@ namespace SportLine.Models
         private string texte;
         private string url;
 
+        public Post() { }
+
         public Post(int id, string titre, string texte, string url)
         {
             this.id = id;

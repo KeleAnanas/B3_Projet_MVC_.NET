@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[Utilisateur]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Nom] NCHAR(50) NULL, 
+    [Prenom] NCHAR(50) NULL, 
+    [EMail] NCHAR(50) NULL, 
+    [MotDePasse] NCHAR(200) NULL, 
+    [CreeLe] DATETIME NULL DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE [dbo].[Post]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Titre] NCHAR(50) NULL, 
+    [Texte] NCHAR(256) NULL, 
+    [Url] NCHAR(256) NULL,
+	[UserId] INT NOT NULL,
+	CONSTRAINT fk_user FOREIGN KEY (UserId) 
+    REFERENCES Utilisateur(Id)
+)
