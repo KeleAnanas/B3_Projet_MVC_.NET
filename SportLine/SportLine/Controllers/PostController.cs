@@ -19,7 +19,7 @@ namespace SportLine.Controllers
             var chaineConnexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C: \Users\theod\Desktop\EPSI B3\.net\B3_Projet_MVC_.NET\SportLine\SportLine\Data\data.mdf;Integrated Security=True;Connect Timeout=30";
             using (var connection = new SqlConnection(chaineConnexion))
             {
-                var galerie = connection.Query<PostEntite>("SELECT * FROM Photo");
+                var galerie = connection.Query<PostEntite>("SELECT * FROM Post");
                 // Remplir
                 return View(this.liste);
             }
