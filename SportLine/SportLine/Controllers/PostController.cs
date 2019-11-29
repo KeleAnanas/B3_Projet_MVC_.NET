@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,17 +12,17 @@ namespace SportLine.Controllers
 {
     public class PostController : Controller
     {
-        private List<Post> liste = new List<Post>();
-        string chaineConnexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\theod\Desktop\EPSI B3\.net\B3_Projet_MVC_.NET\SportLine\SportLine\Data\data.mdf;Integrated Security=True;Connect Timeout=30";
-       
+        private IPostRepo postRepo;
+
+        public PostController(IPostRepo postRepo)
+        {
+            this.postRepo = postRepo;
+        }
+
+
         public IActionResult PostListe()
         {
-            using (var connection = new SqlConnection(this.chaineConnexion))
-            {
-                var galerie = connection.Query<PostEntite>("SELECT * FROM Post");
-                // Remplir
-                return View(this.liste);
-            }
+           return View(postRepo.All);
         }
 
         public IActionResult CreerPost()
@@ -30,24 +31,27 @@ namespace SportLine.Controllers
         }
 
         [HttpPost] //Attribut
-        public IActionResult CreerPost(PostEntite nouveau)
+        public IActionResult CreerPost(PostEntite post)
         {
-            using (var connection = new SqlConnection(this.chaineConnexion))
+            if (ModelState.IsValid)
             {
-                connection.Execute()
+                post.UserId = 1;
+                try
+                {
+                    postRepo.Save(post);
+                    return RedirectToAction(nameof(PostListe));
+                } // Appel du Dispose de connection (ferme la connexion)
+                catch (SqlException e)
+                {
+                    return View();
+                }
             }
-            return RedirectToRoute(nameof(PostListe));
+            return View();
         }
 
         public IActionResult DetailsPost(int id)
         {
-            Post details = this.Liste.Find(x => x.Id == id);
-            return View(details);
-        }
-
-        public List<Post> Liste
-        {
-            get => this.liste;
+            return View(postRepo.GetById(id));
         }
 
     }

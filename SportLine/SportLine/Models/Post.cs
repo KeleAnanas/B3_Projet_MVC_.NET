@@ -7,7 +7,7 @@ namespace SportLine.Models
 {
     public class Post
     {
-        private int id;
+        private int? id;
         private string titre;
         private string texte;
         private string url;
