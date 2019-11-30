@@ -22,12 +22,9 @@ namespace SportLine.Models
             this.url = url;
         }
 
-        public int Id
+        public int? Id
         {
-            get
-            {
-                return id;
-            }
+            get => id;
             set
             {
                 this.id = value;
