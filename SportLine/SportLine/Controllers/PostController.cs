@@ -51,7 +51,15 @@ namespace SportLine.Controllers
 
         public IActionResult DetailsPost(int id)
         {
-            return View(postRepo.GetById(id));
+            var post = postRepo.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(post);
+            }
         }
 
     }

@@ -11,6 +11,7 @@ namespace SportLine.Models
         #region Propriétés automatiques
         public int? Id { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "La longueur du titre est au moins de 2 charactères")]
         public string Titre { get; set; }
         [Required]
         public string Texte { get; set; }
