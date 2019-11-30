@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SportLine.Models;
 
 namespace SportLine
 {
@@ -34,6 +35,7 @@ namespace SportLine
             });
 
             services.AddScoped<IDbConnection>(sp => new SqlConnection(Configuration.GetConnectionString("PostBdd")));
+            services.AddScoped<IPostRepo, PostRepo>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
