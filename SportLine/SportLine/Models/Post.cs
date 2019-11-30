@@ -37,18 +37,12 @@ namespace SportLine.Models
             {
                 titre = value;
             }
-            get
-            {
-                return titre;
-            }
+            get => titre;
         }
 
         public string Texte
         {
-            get
-            {
-                return texte;
-            }
+            get => texte;
             set
             {
                 this.texte = value;
@@ -57,10 +51,7 @@ namespace SportLine.Models
 
         public string Url
         {
-            get
-            {
-                return url;
-            }
+            get => url;
             set
             {
                 this.url = value;
